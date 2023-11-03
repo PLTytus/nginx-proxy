@@ -27,20 +27,24 @@ networks:
 
 ```
 server {
-        listen 80;
-        server_name localhost;
-        index index.php index.html;
-        root /var/www/html;
+    listen 80;
+    server_name localhost;
+    index index.php index.html;
+    root /var/www/html;
 
-        # to see real user ip address
-        set_real_ip_from 0.0.0.0/0;
-        # other set_real_ip_from instruction, e.g. for cloduflare
-        real_ip_header X-Forwarded-For;
-        # make sure real_ip_recursive is on if you use other proxies, e.g. cloudflare
-        real_ip_recursive on;
+    # to see real user ip address
+    set_real_ip_from 0.0.0.0/0;
+    # other set_real_ip_from instruction, e.g. for cloduflare
+    real_ip_header X-Forwarded-For;
+    # make sure real_ip_recursive is on if you use other proxies, e.g. cloudflare
+    real_ip_recursive on;
 }
 ```
 
 ## *Run*
 
 - `docker-compose up -d`
+
+## *Shell*
+
+- `docker exec -it nginx-proxy /bin/bash`
