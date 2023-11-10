@@ -1,4 +1,2 @@
-FROM jwilder/nginx-proxy
-
-RUN apt-get update && \
-	apt-get install -y procps htop
+FROM jwilder/nginx-proxy:alpine
+RUN apk --update add bash procps htop
