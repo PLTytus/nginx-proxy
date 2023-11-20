@@ -23,6 +23,39 @@ networks:
       name: nginx-proxy
 ```
 
+## *Sample nginx + php-fpm app conifig*
+
+```
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx
+    container_name: nginx-app-1
+    expose:
+      - "80"
+    environment:
+      - VIRTUAL_HOST=example.com,www.example.com,*.example.com # make sure you listed all your subdomains
+    networks:
+      - nginx-proxy
+      - internal
+
+  php-fpm:
+    container_name: php-fpm-app-1
+    expose:
+      - 9000
+    hostname: example.com
+    networks:
+      - internal
+
+networks:
+  nginx-proxy:
+    external:
+      name: nginx-proxy
+  internal: # it can be same name for all your apps
+    driver: bridge
+```
+
 ## *Sample nginx.conf*
 
 ```
